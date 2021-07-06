@@ -28,20 +28,45 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService service;
 
-	@RequestMapping("/emp")
+	@RequestMapping("/emp") //endpoint 
 	public Employee getEmployee() {
 		LOG.info("emp");
 //		return new Employee(101, "Sonu", 10.50);
 		return service.findEmployeeById(101);
 	}
 
-// path variable - getemp --
-	@GetMapping("/getemp/{eid}")
-	public Employee getEmployeeByID(@PathVariable("eid") int eid) {
-		LOG.info("getemp");
-		return service.findEmployeeById(eid);
-	}
-  
+//// path variable - getemp --
+// method that returns Employee object	
+//	@GetMapping("/getemp/{eid}")
+//	public Employee getEmployeeByID(@PathVariable("eid") int eid) {
+//		LOG.info("getemp");
+//		return service.findEmployeeById(eid);
+//	}
+
+	
+	
+// method that returns ResponseEntity
+		@GetMapping("/getemp/{eid}")
+		public ResponseEntity<Employee> getEmployeeById(@PathVariable("eid") int eid) {
+			LOG.info("getemp");
+			Employee emp = service.findEmployeeById(eid);
+			if (emp != null)
+				return new ResponseEntity<Employee>(emp, HttpStatus.OK);
+			else
+				return new ResponseEntity<Employee>(emp, HttpStatus.NOT_FOUND);
+		}	
+
+		
+// method that returns ResponseEntity with headers
+	//----copy from git 
+		
+		
+
+		
+		
+		
+		
+	
 // getting all employee data at once 	
 	@GetMapping("/getall")
     public List<Employee> getAllEmps() {
@@ -95,12 +120,12 @@ public class EmployeeController {
 	 * concepts
 	 */
 
-	@RequestMapping("/getemp/{eid}")
-	public Employee getEmployeeById(@PathVariable("eid") int eid) {
-		LOG.info("empemp");
-
-		return service.findEmployeeById(eid);
-	}
+//	@RequestMapping("/getemp/{eid}")
+//	public Employee getEmployeeById(@PathVariable("eid") int eid) {
+//		LOG.info("empemp");
+//
+//		return service.findEmployeeById(eid);
+//	}
 
 	@GetMapping("/getThisEmp/{eid}")
 	public ResponseEntity<Employee> getThisEmp(@PathVariable("eid") int eid) {
