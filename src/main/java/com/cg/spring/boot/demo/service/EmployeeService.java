@@ -21,61 +21,71 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeRepository repository;
 
+//	public Employee findEmployeeById(int eid) {
+//		LOG.info("getEmployeeById");
+//		return repository.findById(eid).get();
+//	}
+
+	// method that handles exception
 	public Employee findEmployeeById(int eid) {
-		LOG.info("getEmployeeById");
-		return repository.findById(eid).get();
+		LOG.info("findEmployeeById");
+		try {
+			return repository.findById(eid).get();
+		} catch (NoSuchElementException nsee) {
+			LOG.error(nsee.getMessage());
+			return null;
+		}
 	}
-	
+
 //Get all Employee - http://localhost:8082/getAllEmployee
-    public List<Employee> getAllEmpployees() {
-        LOG.info("getAllEmployees");
-        return repository.findAll();
-    }
-    
-   
+	public List<Employee> getAllEmpployees() {
+		LOG.info("getAllEmployees");
+		return repository.findAll();
+	}
+
 //Add new Employee  
-     public Employee addEmployee(Employee emp) {
-	   LOG.info("addEmployee");
-    	return repository.save(emp);
-    }
-    
-    
+	public Employee addEmployee(Employee emp) {
+		LOG.info("addEmployee");
+		return repository.save(emp);
+	}
 
 // Update employee 
-     public Employee updateEmployee(Employee emp) {
- 		LOG.info("updateEmployee");
- 		return repository.save(emp);
- 	}
+	public Employee updateEmployee(Employee emp) {
+		LOG.info("updateEmployee");
+		return repository.save(emp);
+	}
 
- 
-     
 // delete employee
-     public int deleteEmployee(int eid) {
-  		LOG.info("deleteEmployee");
-  		repository.deleteById(eid);
-  		return eid;
-  	}
- 
- 
+	public int deleteEmployee(int eid) {
+		LOG.info("deleteEmployee");
+		repository.deleteById(eid);
+		return eid;
+	}
+
 //Search by name 
- 	public List<Employee> getEmployeeByName(String ename) {
- 		LOG.info("GetByName");
- 		return repository.findEmployeeByEname(ename);
- 	}
- 	
- 	
- //search By salary
- 
- 	public List<Employee> getEmployeeBySalary(double salary){
- 			LOG.info("GetByName");
- 			return repository.getEmployeeBySalary(salary);
- 		}
-     
+	public List<Employee> getEmployeeByName(String ename) {
+		LOG.info("GetByName");
+		return repository.findEmployeeByEname(ename);
+	}
+
+	// search By salary
+
+	public List<Employee> getEmployeeBySalary(double salary) {
+		LOG.info("GetByName");
+		return repository.getEmployeeBySalary(salary);
+	}
+
+	public List<Employee> findEmployeeBySalary(double salary) {
+		LOG.info("findEmployeeBySalary");
+//		return repository.findBySalary(salary);
+//		return repository.findBySalaryLessThan(salary);
+//		return repository.findBySalaryGreaterThan(salary);
+		return repository.findEmployeeBySalary(salary);
+	}
+
 //----------------------------------------------------------------------------     
-     
-     
-     
-     /**
+
+	/**
 	 * Try the below code only after you are comfortable with basic spring boot
 	 * concepts
 	 */
