@@ -12,6 +12,14 @@ public class Hello {
 //	private static final 
 	Logger LOG = LoggerFactory.getLogger(Hello.class);
 
+	@RequestMapping("/")
+	public String welcome() {
+		LOG.info("welcome");
+		return "Welcome to cg spring boot app.";
+	}
+
+
+
 	// URL - http://localhost:8082/hello
 
 //	@RequestMapping("/hello") // end point, API

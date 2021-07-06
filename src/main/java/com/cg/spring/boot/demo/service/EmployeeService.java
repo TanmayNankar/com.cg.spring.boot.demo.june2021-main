@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.spring.boot.demo.exception.EmployeeNotFoundException;
 import com.cg.spring.boot.demo.model.Employee;
 import com.cg.spring.boot.demo.repository.EmployeeRepository;
 
@@ -26,17 +27,35 @@ public class EmployeeService {
 //		return repository.findById(eid).get();
 //	}
 
+	
+//-------by using try catch	
 	// method that handles exception
+//	public Employee findEmployeeById(int eid) {
+//		LOG.info("findEmployeeById");
+//		try {
+//			return repository.findById(eid).get();
+//		} catch (NoSuchElementException nsee) {
+//			LOG.error(nsee.getMessage());
+//			return null;
+//		}
+//	}
+
+//OR	
+	
+	// method that work with custom exception
 	public Employee findEmployeeById(int eid) {
 		LOG.info("findEmployeeById");
-		try {
-			return repository.findById(eid).get();
-		} catch (NoSuchElementException nsee) {
-			LOG.error(nsee.getMessage());
-			return null;
+	Employee emp = repository.findById(eid).get();
+	if(emp != null)
+		return emp;
+	else
+		throw new EmployeeNotFoundException();
 		}
-	}
-
+	
+//------------------------------------------------	
+	
+	
+	
 //Get all Employee - http://localhost:8082/getAllEmployee
 	public List<Employee> getAllEmpployees() {
 		LOG.info("getAllEmployees");
