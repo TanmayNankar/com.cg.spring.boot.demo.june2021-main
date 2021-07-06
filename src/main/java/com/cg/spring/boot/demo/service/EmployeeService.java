@@ -33,7 +33,7 @@ public class EmployeeService {
     }
     
    
- //Add new Employee  
+//Add new Employee  
      public Employee addEmployee(Employee emp) {
 	   LOG.info("addEmployee");
     	return repository.save(emp);
@@ -41,7 +41,7 @@ public class EmployeeService {
     
     
 
- // Update employee 
+// Update employee 
      public Employee updateEmployee(Employee emp) {
  		LOG.info("updateEmployee");
  		return repository.save(emp);
@@ -57,15 +57,24 @@ public class EmployeeService {
   	}
  
  
-// find by name     
-// 	public Employee findEmployeeByName(String ename) {
-// 		LOG.info("getEmployeeByName");
-// 		return repository.findByName(ename);
-// 	}
-// 
-
+//Search by name 
+ 	public List<Employee> getEmployeeByName(String ename) {
+ 		LOG.info("GetByName");
+ 		return repository.findEmployeeByEname(ename);
+ 	}
+ 	
+ 	
+ //search By salary
+ 
+ 	public List<Employee> getEmployeeBySalary(double salary){
+ 			LOG.info("GetByName");
+ 			return repository.getEmployeeBySalary(salary);
+ 		}
      
 //----------------------------------------------------------------------------     
+     
+     
+     
      /**
 	 * Try the below code only after you are comfortable with basic spring boot
 	 * concepts

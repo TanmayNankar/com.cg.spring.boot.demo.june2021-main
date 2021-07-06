@@ -35,7 +35,7 @@ public class EmployeeController {
 		return service.findEmployeeById(101);
 	}
 
-	// path variable - getemp --
+// path variable - getemp --
 	@GetMapping("/getemp/{eid}")
 	public Employee getEmployeeByID(@PathVariable("eid") int eid) {
 		LOG.info("getemp");
@@ -73,16 +73,23 @@ public class EmployeeController {
 	}
 
 
+// find By Name 	
+	@GetMapping("/getByName/{ename}")
+	private List<Employee> getEmployee(@PathVariable("ename") String ename) {
+		 LOG.info("GetByName");
+		return service.getEmployeeByName(ename);
+	}
+
+// by salary
+	@GetMapping("/getBySal/{salary}")
+	private List<Employee> getEmployee1(@PathVariable("salary") double salary) {
+		 LOG.info("GetByName");
+		return service.getEmployeeBySalary(salary);
+	}	
 	
-//find by name 	
-//	@GetMapping("/getemp/{ename}")
-//	public Employee getEmployeeByName(@PathVariable("ename") String ename) {
-//		LOG.info("getemp");
-//		return service.findEmployeeByName(ename);
-//	}
-
-
 //----------------------------------------------------------------------------	
+
+	
 	/**
 	 * Try the below code only after you are comfortable with basic spring boot
 	 * concepts
