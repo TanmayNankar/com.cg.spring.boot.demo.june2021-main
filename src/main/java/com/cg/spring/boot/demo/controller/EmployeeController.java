@@ -59,20 +59,32 @@ public class EmployeeController {
 		
 // method that returns ResponseEntity with headers
 	//----copy from git 
-		
-		
+//		@GetMapping("/getemp/{eid}")
+//		public ResponseEntity<Employee> getEmployeeById(@PathVariable("eid") int eid) {
+//			LOG.info("getemp");
+//			Employee emp = service.findEmployeeById(eid);
+//			HttpHeaders headers = new HttpHeaders();
+//			if (emp != null) {
+//				headers.add("Employee name", emp.getEname());
+//				return new ResponseEntity<Employee>(emp, headers, HttpStatus.OK);
+//			} else {
+//				headers.add("Employee name", "Name not available");
+//				return new ResponseEntity<Employee>(emp, headers, HttpStatus.NOT_FOUND);
+//			}
+//		}	
+//		
 
 		
 		
 		
 		
-	
-// getting all employee data at once 	
-	@GetMapping("/getall")
-    public List<Employee> getAllEmps() {
-        LOG.info("getAllEmps");
-        return service.getAllEmployees();
-    }
+//	
+//// getting all employee data at once 	
+//	@GetMapping("/getall")
+//    public List<Employee> getAllEmps() {
+//        LOG.info("getAllEmps");
+//        return service.getAllEmployees();
+//    }
 	
 	
 // add new Employee	
@@ -127,53 +139,53 @@ public class EmployeeController {
 //		return service.findEmployeeById(eid);
 //	}
 
-	@GetMapping("/getThisEmp/{eid}")
-	public ResponseEntity<Employee> getThisEmp(@PathVariable("eid") int eid) {
-		Employee emp = service.getEmployeeById(eid);
-		if (emp == null) {
-			LOG.error("Not a valid employee id.");
-			return null;
-		}
-
-		return new ResponseEntity<>(emp, HttpStatus.OK);
-	}
-
-//creating a get mapping that retrieves all the Employee detail from the database
-	@GetMapping("/getAllEmployee")
-	public List<Employee> getAllEmployee() {
-
-		return service.getAllEmployees();
-	}
-
-//creating a get mapping that retrieves the detail of a specific Employee
-	@GetMapping("/getEmployee/{eid}")
-	private Employee getEmployee(@PathVariable("eid") int eid) {
-		return service.getEmployeeById(eid);
-	}
+//	@GetMapping("/getThisEmp/{eid}")
+//	public ResponseEntity<Employee> getThisEmp(@PathVariable("eid") int eid) {
+//		Employee emp = service.getEmployeeById(eid);
+//		if (emp == null) {
+//			LOG.error("Not a valid employee id.");
+//			return null;
+//		}
+//
+//		return new ResponseEntity<>(emp, HttpStatus.OK);
+//	}
+//
+////creating a get mapping that retrieves all the Employee detail from the database
+//	@GetMapping("/getAllEmployee")
+//	public List<Employee> getAllEmployee() {
+//
+//		return service.getAllEmployees();
+//	}
+//
+////creating a get mapping that retrieves the detail of a specific Employee
+//	@GetMapping("/getEmployee/{eid}")
+//	private Employee getEmployee(@PathVariable("eid") int eid) {
+//		return service.getEmployeeById(eid);
+//	}
 
 //	@GetMapping("/getEmpByName/{ename}")
 //	private List<Employee> getEmployee(@PathVariable("ename") String ename) {
 //		return service.getEmployeeByName(ename);
 //	}
 
-	// creating a delete mapping that deletes a specified Employee
-	@DeleteMapping("/deleteEmployee/{eid}")
-	private void deleteEmployee(@PathVariable("eid") int eid) {
-		service.delete(eid);
-	}
-
-//creating post mapping that post the Employee detail in the database
-	@PostMapping("/saveEmployee")
-	private int saveEmployee(@RequestBody Employee employee) {
-		service.saveOrUpdate(employee);
-		return employee.getEid();
-	}
-
-//creating put mapping that updates the Employee detail
-	@PutMapping("/updateEmployee")
-	private Employee updateEmployee(@RequestBody Employee Employee) {
-		service.saveOrUpdate(Employee);
-		return Employee;
-	}
+//	// creating a delete mapping that deletes a specified Employee
+//	@DeleteMapping("/deleteEmployee/{eid}")
+//	private void deleteEmployee(@PathVariable("eid") int eid) {
+//		service.delete(eid);
+//	}
+//
+////creating post mapping that post the Employee detail in the database
+//	@PostMapping("/saveEmployee")
+//	private int saveEmployee(@RequestBody Employee employee) {
+//		service.saveOrUpdate(employee);
+//		return employee.getEid();
+//	}
+//
+////creating put mapping that updates the Employee detail
+//	@PutMapping("/updateEmployee")
+//	private Employee updateEmployee(@RequestBody Employee Employee) {
+//		service.saveOrUpdate(Employee);
+//		return Employee;
+//	}
 
 }

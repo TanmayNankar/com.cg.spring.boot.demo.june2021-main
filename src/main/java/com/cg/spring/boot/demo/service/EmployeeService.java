@@ -1,6 +1,6 @@
 package com.cg.spring.boot.demo.service;
 
-import java.util.ArrayList;
+    import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -27,7 +27,6 @@ public class EmployeeService {
 //		return repository.findById(eid).get();
 //	}
 
-	
 //-------by using try catch	
 	// method that handles exception
 //	public Employee findEmployeeById(int eid) {
@@ -41,21 +40,19 @@ public class EmployeeService {
 //	}
 
 //OR	
-	
-	// method that work with custom exception
+
+	// method that works with custom exception
 	public Employee findEmployeeById(int eid) {
 		LOG.info("findEmployeeById");
-	Employee emp = repository.findById(eid).get();
-	if(emp != null)
-		return emp;
-	else
-		throw new EmployeeNotFoundException();
+		try {
+			return repository.findById(eid).get();
+		} catch (NoSuchElementException nsee) {
+			LOG.error(nsee.getMessage());
+			throw new EmployeeNotFoundException();
 		}
-	
+	}
 //------------------------------------------------	
-	
-	
-	
+
 //Get all Employee - http://localhost:8082/getAllEmployee
 	public List<Employee> getAllEmpployees() {
 		LOG.info("getAllEmployees");
@@ -110,44 +107,44 @@ public class EmployeeService {
 	 */
 
 	// getting all Employee record by using the method findaAll() of CrudRepository
-	public List<Employee> getAllEmployees() {
-		List<Employee> employee = new ArrayList<Employee>();
-		repository.findAll().forEach(employee1 -> employee.add(employee1));
-		return employee;
-	}
-
-	// getting a specific record by using the method findById() of CrudRepository
-	public Employee getEmployeeById(int id) {
-		// logic
-		try {
-			return repository.findById(id).get();
-		} catch (NoSuchElementException nse) {
-			LOG.error("Not a valid employee id");
-
-			return null;
-		} catch (Exception ex) {
-			// LOG.info();
-			return null;
-		}
-	}
+//	public List<Employee> getAllEmployees() {
+//		List<Employee> employee = new ArrayList<Employee>();
+//		repository.findAll().forEach(employee1 -> employee.add(employee1));
+//		return employee;
+//	}
+//
+//	// getting a specific record by using the method findById() of CrudRepository
+//	public Employee getEmployeeById(int id) {
+//		// logic
+//		try {
+//			return repository.findById(id).get();
+//		} catch (NoSuchElementException nse) {
+//			LOG.error("Not a valid employee id");
+//
+//			return null;
+//		} catch (Exception ex) {
+//			// LOG.info();
+//			return null;
+//		}
+//	}
 
 //	public List<Employee> getEmployeeByName(String ename) {
 //		return repository.findEmployeeByEname(ename);
 //	}
 
-	// saving a specific record by using the method save() of CrudRepository
-	public void saveOrUpdate(Employee employee) {
-		repository.save(employee);
-	}
-
-	// updating a record
-	public void update(Employee employee, int eid) {
-		repository.save(employee);
-	}
-
-	// deleting a specific record by using the method deleteById() of CrudRepository
-	public void delete(int id) {
-		repository.deleteById(id);
-	}
-
+//	// saving a specific record by using the method save() of CrudRepository
+//	public void saveOrUpdate(Employee employee) {
+//		repository.save(employee);
+//	}
+//
+//	// updating a record
+//	public void update(Employee employee, int eid) {
+//		repository.save(employee);
+//	}
+//
+//	// deleting a specific record by using the method deleteById() of CrudRepository
+//	public void delete(int id) {
+//		repository.deleteById(id);
+//	}
+//
 }
