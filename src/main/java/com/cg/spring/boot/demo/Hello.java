@@ -2,6 +2,7 @@ package com.cg.spring.boot.demo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,9 @@ public class Hello {
 //	private static final 
 	Logger LOG = LoggerFactory.getLogger(Hello.class);
 
+	
+	@CrossOrigin(origins = "/*")
+//	@CrossOrigin(origins =  http://localhost:3000/)
 	@RequestMapping("/")
 	public String welcome() {
 		LOG.info("welcome");

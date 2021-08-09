@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.support.Repositories;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,10 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService service;
+//	@CrossOrigin(origins = "/*")
+	@CrossOrigin
+	(origins =  "http://localhost:3000/")
+	
 
 	@RequestMapping("/emp") //endpoint 
 	public Employee getEmployee() {
@@ -43,8 +48,8 @@ public class EmployeeController {
 //		return service.findEmployeeById(eid);
 //	}
 
-	
-	
+	@CrossOrigin
+	(origins =  "http://localhost:3000/")		
 // method that returns ResponseEntity
 		@GetMapping("/getemp/{eid}")
 		public ResponseEntity<Employee> getEmployeeById(@PathVariable("eid") int eid) {
@@ -78,13 +83,13 @@ public class EmployeeController {
 		
 		
 		
-//	
-//// getting all employee data at once 	
-//	@GetMapping("/getall")
-//    public List<Employee> getAllEmps() {
-//        LOG.info("getAllEmps");
-//        return service.getAllEmployees();
-//    }
+	
+// getting all employee data at once 	
+	@GetMapping("/getall")
+    public List<Employee> getAllEmps() {
+        LOG.info("getAllEmps");
+        return service.getAllEmpployees();
+    }
 	
 	
 // add new Employee	
